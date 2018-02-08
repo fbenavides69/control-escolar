@@ -1,9 +1,7 @@
 from flask import Blueprint
-from flask import render_template
+from . import views
 
 mod = Blueprint('site', __name__, template_folder='templates')
 
-
-@mod.route('/')
-def index():
-    return(render_template("index.html"))
+# Define the URL paths  to view functions
+mod.add_url_rule('/', 'index', views.index)

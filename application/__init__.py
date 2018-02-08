@@ -5,6 +5,7 @@
 '''
 from flask import Flask
 from flask_bootstrap import Bootstrap
+from flask_debugtoolbar import DebugToolbarExtension
 
 
 def create_app():
@@ -39,6 +40,9 @@ def create_app():
 
     # Initialize bootstrap
     Bootstrap(app)
+
+    # Debug = True to enable the toolbar
+    toolbar = DebugToolbarExtension(app)
 
     # Load blueprint modules
     from application.site.routes import mod as site
