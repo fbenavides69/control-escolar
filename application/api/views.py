@@ -1,2 +1,2 @@
 def version():
-    return('{"result": "API 1.0"}')
+    return '{"result": "API 1.0"}'
