@@ -5,7 +5,12 @@
 '''
 from flask import Flask
 from flask_bootstrap import Bootstrap
+from flask_sqlalchemy import SQLAlchemy
+from flask_security import Security
+from flask_security import SQLAlchemyUserDatastore
 from flask_debugtoolbar import DebugToolbarExtension
+from .models import User
+from .models import Role
 
 
 def create_app():
@@ -40,6 +45,12 @@ def create_app():
 
     # Initialize bootstrap
     Bootstrap(app)
+
+    # Create database connection
+    db = SQLAlchemy(app)
+
+    # Setup Flask-Security
+    security = Security(app, SQLAlchemyUserDatastore(db, User, Role))
 
     # Debug = True to enable the toolbar
     toolbar = DebugToolbarExtension(app)
