@@ -5,3 +5,6 @@ BCRYPT_LOG_ROUNDS = 12
 
 # Business logic
 PROJECT_NAME = 'MiEscuela'
+
+# Flask Security
+SECURITY_REGISTERABLE = True

@@ -5,12 +5,15 @@
 '''
 from flask import Flask
 from flask_bootstrap import Bootstrap
-from flask_sqlalchemy import SQLAlchemy
 from flask_security import Security
 from flask_security import SQLAlchemyUserDatastore
 from flask_debugtoolbar import DebugToolbarExtension
+from flask_admin import Admin
+from flask_admin.contrib.sqla import ModelView
+from .models import db
 from .models import User
 from .models import Role
+from .admin import admin
 
 
 def create_app():
@@ -43,11 +46,14 @@ def create_app():
     # Load environment config values
     app.config.from_envvar('APP_CONFIG_FILE')
 
+    # Create database connection
+    db.init_app(app)
+
+    # Instantiate Admin section
+    admin.init_app(app)
+
     # Initialize bootstrap
     Bootstrap(app)
-
-    # Create database connection
-    db = SQLAlchemy(app)
 
     # Setup Flask-Security
     security = Security(app, SQLAlchemyUserDatastore(db, User, Role))
