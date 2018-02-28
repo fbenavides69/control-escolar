@@ -1,0 +1,5 @@
+{{ _('Su clave ha sido cambiada') }}
+{% if security.recoverable %}
+{{ _('Sí usted no ha cambiado su clave, dele click a la liga de abajo para restaurarlo:') }}
+{{ url_for_security('forgot_password', _external=True) }}
+{% endif %}

@@ -1,0 +1,3 @@
+{{ _('Por favor confirme su correo electrónico a través de la liga de abajo:') }}
+
+{{ confirmation_link }}

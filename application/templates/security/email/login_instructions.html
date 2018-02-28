@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+    {% include "navbar.html" %}
+
+    {% block title %} {{ _('Instrucciones de entrada') }} {% endblock %}
+
+    {% block content %}
+
+        <div class="container">
+
+            <p>{{ _('Bienvenido %(email)s!', email=user.email) }}</p>
+
+            <p>{{ _('Usted ya puede entrar a su cuenta a través de la liga de abajo:') }}</p>
+
+            <p><a href="{{ login_link }}">{{ _('Entre ahora') }}</a></p>
+
+        </div>
+
+    {% endblock content %}
+
+{% endblock body%}

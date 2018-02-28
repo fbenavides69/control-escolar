@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+    {% include "navbar.html" %}
+
+    {% block title %} {{ _('Notificación de cambio') }} {% endblock %}
+
+    {% block content %}
+
+        <div class="container">
+
+            <p>{{ _('Su clave ha sido cambiada') }}</p>
+
+        </div>
+
+    {% endblock content %}
+
+{% endblock body%}

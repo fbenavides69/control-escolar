@@ -1,0 +1,5 @@
+{{ _('Bienvenido %(email)s!', email=user.email) }}
+
+{{ _('Usted ya puede entrar a su cuenta a través de la liga de abajo:') }}
+
+{{ login_link }}

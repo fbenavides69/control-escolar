@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+    {% include "navbar.html" %}
+
+    {% block title %} {{ _('Bienvenido') }} {% endblock %}
+
+    {% block content %}
+
+        <div class="container">
+
+            <p>{{ _('Bienvenido %(email)s!', email=user.email) }}</p>
+
+            {% if security.confirmable %}
+            <p>{{ _('Ya puede confirmar su correo electrónico a través de la liga de abajo:') }}</p>
+
+            <p><a href="{{ confirmation_link }}">{{ _('Confirmar mi cuenta') }}</a></p>
+            {% endif %}
+
+        </div>
+
+    {% endblock content %}
+
+{% endblock body%}

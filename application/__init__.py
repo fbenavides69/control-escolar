@@ -8,8 +8,6 @@ from flask_bootstrap import Bootstrap
 from flask_security import Security
 from flask_security import SQLAlchemyUserDatastore
 from flask_debugtoolbar import DebugToolbarExtension
-from flask_admin import Admin
-from flask_admin.contrib.sqla import ModelView
 from .models import db
 from .models import User
 from .models import Role

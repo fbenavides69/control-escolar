@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+    {% include "navbar.html" %}
+
+    {% block title %} {{ _('Error de servidor') }} {% endblock %}
+
+    {% block content %}
+
+        <div class="jumbotron">
+            <div class="text-center">
+                <h1>500</h1>
+                <p>Disculpe, algo salio mal en nuestro sistema. No se alarme, lo estamos arreglando! Por favor intentelo de nuevo más tarde</p>
+            </div>
+        </div>
+
+    {% endblock content %}
+
+{% endblock body %}
