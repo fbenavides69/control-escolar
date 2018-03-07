@@ -3,6 +3,9 @@ DEBUG = False
 SQLALCHEMY_ECHO = False
 BCRYPT_LOG_ROUNDS = 12
 
+# Tool bar
+DEBUG_TB_INTERCEPT_REDIRECTS = False
+
 # Business logic
 PROJECT_NAME = 'MiEscuela'
 

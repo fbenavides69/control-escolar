@@ -1,19 +1,9 @@
 {% extends "layout.html" %}
 
-{% block body %}
+{% block title %} {{ _('Notificación de restablecimiento') }} {% endblock %}
 
-    {% include "navbar.html" %}
+{% block mycontent %}
 
-    {% block title %} {{ _('Notificación de cambio') }} {% endblock %}
+    <p>{{ _('Su clave ha sido cambiada') }}</p>
 
-    {% block content %}
-
-        <div class="container">
-
-            <p>{{ _('Su clave ha sido cambiada') }}</p>
-
-        </div>
-
-    {% endblock content %}
-
-{% endblock body%}
+{% endblock mycontent %}

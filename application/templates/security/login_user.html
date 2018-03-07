@@ -1,28 +1,25 @@
 {% extends "layout.html" %}
-{% from "security/_macros.html" import render_field_with_errors, render_field %}
+{% from "security/_macros.html" import render_field_with_errors, render_field_with_errors_right, render_field %}
 
-{% block body %}
+{% block title %} {{ _('Inicio de sesión') }} {% endblock %}
 
-    {% include "navbar.html" %}
+{% block mynav %}
 
-    {% block title %} {{ _('Entrada') }} {% endblock %}
+    <li class="active"><a href="/login">Inicio</a></li>
+    <li><a href="/register">Registro</a></li>
 
-    {% block content %}
+{% endblock mynav %}
 
-        <div class="container">
-            {% include "security/_messages.html" %}
-            <h1>{{ _('Entrada') }}</h1>
-            <form action="{{ url_for_security('login') }}" method="POST" name="login_user_form">
-                {{ login_user_form.hidden_tag() }}
-                {{ render_field_with_errors(login_user_form.email, class="form-control") }}
-                {{ render_field_with_errors(login_user_form.password, class="form-control") }}
-                {{ render_field_with_errors(login_user_form.remember, class="form-check-input") }}
-                {{ render_field(login_user_form.next, class="btn btn-primary") }}
-                {{ render_field(login_user_form.submit, class="btn btn-primary") }}
-            </form>
-            {% include "security/_menu.html" %}
-        </div>
+{% block mycontent %}
 
-    {% endblock content %}
+    <h1>{{ _('Inicio de sesión') }}</h1>
+    <form action="{{ url_for_security('login') }}" method="POST" name="login_user_form">
+        {{ login_user_form.hidden_tag() }}
+        {{ render_field_with_errors("Correo Electrónico ", login_user_form.email, class="form-control", placeholder="ejemplo@correo.com") }}
+        {{ render_field_with_errors("Contraseña ", login_user_form.password, class="form-control", placeholder="contraseña") }}
+        {{ render_field_with_errors_right("Recuerdame", login_user_form.remember) }}
+        {{ render_field(login_user_form.next, class="btn btn-primary") }}
+        {{ render_field(login_user_form.submit, class="btn btn-primary", value="Iniciar") }}
+    </form>
 
-{% endblock body %}
+{% endblock mycontent %}

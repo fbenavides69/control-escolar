@@ -1,5 +1,20 @@
 {% extends "layout.html" %}
 
-{% include "navbar.html" %}
+{% block title %} {{ _('index') }} {% endblock %}
 
-{% block title %} {{title}} {% endblock %}
+{% block mynav %}
+
+    <li><a href="/login">Inicio</a></li>
+    <li><a href="/register">Registro</a></li>
+
+{% endblock mynav %}
+
+{% block mycontent %}
+
+    <div class="jumbotron text-center">
+
+        <h1>{{ _('Bienvenido') }}</h1>
+
+    </div>
+
+{% endblock mycontent %}

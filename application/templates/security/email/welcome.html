@@ -1,25 +1,15 @@
 {% extends "layout.html" %}
 
-{% block body %}
+{% block title %} {{ _('Bienvenido') }} {% endblock %}
 
-    {% include "navbar.html" %}
+{% block mycontent %}
 
-    {% block title %} {{ _('Bienvenido') }} {% endblock %}
+    <p>{{ _('Bienvenido %(email)s!', email=user.email) }}</p>
 
-    {% block content %}
+    {% if security.confirmable %}
+        <p>{{ _('Ya puede confirmar su correo electrónico a través de la liga de abajo:') }}</p>
 
-        <div class="container">
+        <p><a href="{{ confirmation_link }}">{{ _('Confirmar mi cuenta') }}</a></p>
+    {% endif %}
 
-            <p>{{ _('Bienvenido %(email)s!', email=user.email) }}</p>
-
-            {% if security.confirmable %}
-            <p>{{ _('Ya puede confirmar su correo electrónico a través de la liga de abajo:') }}</p>
-
-            <p><a href="{{ confirmation_link }}">{{ _('Confirmar mi cuenta') }}</a></p>
-            {% endif %}
-
-        </div>
-
-    {% endblock content %}
-
-{% endblock body%}
+{% endblock mycontent %}

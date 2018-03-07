@@ -1,20 +1,14 @@
 {% extends "layout.html" %}
 
-{% block body %}
+{% block title %} {{ _('No Authorizado') }} {% endblock %}
 
-    {% include "navbar.html" %}
+{% block mycontent %}
 
-    {% block title %} {{ _('No Authorizado') }} {% endblock %}
-
-    {% block content %}
-
-        <div class="jumbotron">
-            <div class="text-center">
-                <h1>401</h1>
-                <p>Usted no está autorizado para ver esta página</p>
-            </div>
+    <div class="jumbotron">
+        <div class="text-center">
+            <h1>401</h1>
+            <p>Usted no está autorizado para ver esta página</p>
         </div>
+    </div>
 
-    {% endblock content %}
-
-{% endblock body %}
+{% endblock mycontent %}

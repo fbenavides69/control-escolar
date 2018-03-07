@@ -1,21 +1,11 @@
 {% extends "layout.html" %}
 
-{% block body %}
+{% block title %} {{ _('Instrucciones de confirmación') }} {% endblock %}
 
-    {% include "navbar.html" %}
+{% block mycontent %}
 
-    {% block title %} {{ _('Instrucciones de confirmación') }} {% endblock %}
+    <p>{{ _('Por favor confirme su correo electrónico a través de la liga de abajo:') }}</p>
 
-    {% block content %}
+    <p><a href="{{ confirmation_link }}">{{ _('Confirmar mi cuenta') }}</a></p>
 
-        <div class="container">
-
-            <p>{{ _('Por favor confirme su correo electrónico a través de la liga de abajo:') }}</p>
-
-            <p><a href="{{ confirmation_link }}">{{ _('Confirmar mi cuenta') }}</a></p>
-
-        </div>
-
-    {% endblock content %}
-
-{% endblock body%}
+{% endblock mycontent %}

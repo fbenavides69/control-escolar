@@ -1,20 +1,14 @@
 {% extends "layout.html" %}
 
-{% block body %}
+{% block title %} {{ _('Página no encontrada') }} {% endblock %}
 
-    {% include "navbar.html" %}
+{% block mycontent %}
 
-    {% block title %} {{ _('Página no encontrada') }} {% endblock %}
-
-    {% block content %}
-
-        <div class="jumbotron">
-            <div class="text-center">
-                <h1>404</h1>
-                <p>Disculpe, esta página no existe</p>
-            </div>
+    <div class="jumbotron">
+        <div class="text-center">
+            <h1>404</h1>
+            <p>Disculpe, esta página no existe</p>
         </div>
+    </div>
 
-    {% endblock content %}
-
-{% endblock body %}
+{% endblock mycontent %}

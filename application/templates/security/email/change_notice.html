@@ -1,22 +1,13 @@
 {% extends "layout.html" %}
 
-{% block body %}
+{% block title %} {{ _('Notificación de cambio') }} {% endblock %}
 
-    {% include "navbar.html" %}
+{% block mycontent %}
 
-    {% block title %} {{ _('Notificación de cambio') }} {% endblock %}
+    <p>{{ _('Su clave ha sido cambiada') }}</p>
 
-    {% block content %}
+    {% if security.recoverable %}
+        <p>{{ _('Sí usted no ha cambiado su clave, ') }} <a href="{{ url_for_security('forgot_password', _external=True) }}">{{ _('dele click aquí para restaurarla') }}</a>.</p>
+    {% endif %}
 
-        <div class="container">
-
-            <p>{{ _('Su clave ha sido cambiada') }}</p>
-            {% if security.recoverable %}
-            <p>{{ _('Sí usted no ha cambiado su clave, ') }} <a href="{{ url_for_security('forgot_password', _external=True) }}">{{ _('dele click aquí para restaurarla') }}</a>.</p>
-            {% endif %}
-
-        </div>
-
-    {% endblock content %}
-
-{% endblock body%}
+{% endblock mycontent %}

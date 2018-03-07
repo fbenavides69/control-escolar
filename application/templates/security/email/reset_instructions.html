@@ -1,19 +1,9 @@
 {% extends "layout.html" %}
 
-{% block body %}
+{% block title %} {{ _('Instrucciones de restablecimiento') }} {% endblock %}
 
-    {% include "navbar.html" %}
+{% block mycontent %}
 
-    {% block title %} {{ _('Instrucciones de cambio') }} {% endblock %}
+    <p><a href="{{ reset_link }}">{{ _('Dele click aquí para cambiar su clave') }}</a></p>
 
-    {% block content %}
-
-        <div class="container">
-
-            <p><a href="{{ reset_link }}">{{ _('Dele click aquí para cambiar su clave') }}</a></p>
-
-        </div>
-
-    {% endblock content %}
-
-{% endblock body%}
+{% endblock mycontent %}
