@@ -1,1 +1,1 @@
-{{ _('Su clave ha sido cambiada') }}
+{{ _('Su contraseña ha sido cambiada') }}

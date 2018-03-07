@@ -4,10 +4,10 @@
 
 {% block mycontent %}
 
-    <p>{{ _('Su clave ha sido cambiada') }}</p>
+    <p>{{ _('Su contraseña ha sido cambiada') }}</p>
 
     {% if security.recoverable %}
-        <p>{{ _('Sí usted no ha cambiado su clave, ') }} <a href="{{ url_for_security('forgot_password', _external=True) }}">{{ _('dele click aquí para restaurarla') }}</a>.</p>
+        <p>{{ _('Sí usted no ha cambiado su contraseña, ') }} <a href="{{ url_for_security('forgot_password', _external=True) }}">{{ _('dele click aquí para restaurarla') }}</a>.</p>
     {% endif %}
 
 {% endblock mycontent %}

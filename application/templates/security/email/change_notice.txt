@@ -1,7 +1,7 @@
-{{ _('Su clave ha sido cambiada') }}
+{{ _('Su contraseña ha sido cambiada') }}
 
 {% if security.recoverable %}
-    {{ _('Sí usted no ha cambiado su clave, dele click a la liga de abajo para restaurarlo:') }}
+    {{ _('Sí usted no ha cambiado su contraseña, dele click a la liga de abajo para restaurarla:') }}
 
     {{ url_for_security('forgot_password', _external=True) }}
 {% endif %}

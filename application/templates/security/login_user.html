@@ -1,25 +1,25 @@
 {% extends "layout.html" %}
 {% from "security/_macros.html" import render_field_with_errors, render_field_with_errors_right, render_field %}
 
-{% block title %} {{ _('Inicio de sesión') }} {% endblock %}
+{% block title %} {{ _('Ingreso') }} {% endblock %}
 
 {% block mynav %}
 
-    <li class="active"><a href="/login">Inicio</a></li>
+    <li class="active"><a href="/login">Ingreso</a></li>
     <li><a href="/register">Registro</a></li>
 
 {% endblock mynav %}
 
 {% block mycontent %}
 
-    <h1>{{ _('Inicio de sesión') }}</h1>
+    <h1>{{ _('Ingreso') }}</h1>
     <form action="{{ url_for_security('login') }}" method="POST" name="login_user_form">
         {{ login_user_form.hidden_tag() }}
         {{ render_field_with_errors("Correo Electrónico ", login_user_form.email, class="form-control", placeholder="ejemplo@correo.com") }}
-        {{ render_field_with_errors("Contraseña ", login_user_form.password, class="form-control", placeholder="contraseña") }}
+        {{ render_field_with_errors("Contraseña ", login_user_form.password, class="form-control", placeholder="Contraseña") }}
         {{ render_field_with_errors_right("Recuerdame", login_user_form.remember) }}
         {{ render_field(login_user_form.next, class="btn btn-primary") }}
-        {{ render_field(login_user_form.submit, class="btn btn-primary", value="Iniciar") }}
+        {{ render_field(login_user_form.submit, class="btn btn-primary", value="Ingresar") }}
     </form>
 
 {% endblock mycontent %}

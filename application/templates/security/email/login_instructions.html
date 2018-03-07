@@ -1,13 +1,13 @@
 {% extends "layout.html" %}
 
-{% block title %} {{ _('Instrucciones de entrada') }} {% endblock %}
+{% block title %} {{ _('Instrucciones de ingreso') }} {% endblock %}
 
 {% block mycontent %}
 
     <p>{{ _('Bienvenido %(email)s!', email=user.email) }}</p>
 
-    <p>{{ _('Usted ya puede entrar a su cuenta a través de la liga de abajo:') }}</p>
+    <p>{{ _('Usted ya puede ingresar a su cuenta a través de la liga de abajo:') }}</p>
 
-    <p><a href="{{ login_link }}">{{ _('Entre ahora') }}</a></p>
+    <p><a href="{{ login_link }}">{{ _('Ingrese ahora') }}</a></p>
 
 {% endblock mycontent %}
