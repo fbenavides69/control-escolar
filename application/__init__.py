@@ -7,6 +7,7 @@ from flask import Flask
 from flask_bootstrap import Bootstrap
 from flask_security import Security
 from flask_security import SQLAlchemyUserDatastore
+from flask_mail import Mail
 from flask_debugtoolbar import DebugToolbarExtension
 from .models import db
 from .models import User
@@ -49,6 +50,9 @@ def create_app():
 
     # Instantiate Admin section
     admin.init_app(app)
+
+    # Intialize mail
+    Mail(app)
 
     # Initialize bootstrap
     Bootstrap(app)
