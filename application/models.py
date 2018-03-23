@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 ''' Flask SQL Alchemy ORM
 
     Define the Flask-Security database User and Roles schema
@@ -11,25 +13,22 @@
         app.app_contect().push()
         db.create_all()
 '''
-from flask_sqlalchemy import SQLAlchemy
+
 from flask_security import RoleMixin
 from flask_security import UserMixin
+from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import relationship
 from sqlalchemy.orm import backref
 
-# Initialize the SQL ALchemy object
+# Initialize the SQL Alchemy object
 db = SQLAlchemy()
 
 
-class RolesUsers(db.Model):
-    __tablename__ = 'roles_users'
-
-    id = db.Column(db.Integer(), primary_key=True)
-    user_id = db.Column('user_id', db.Integer(), db.ForeignKey('user.id'))
-    role_id = db.Column('role_id', db.Integer(), db.ForeignKey('role.id'))
-
-    def __repr__(self):
-        return '<RoleUser> {}'.format(self.user_id, self.role_id)
+# Create a table to support a many-to-many relationship between Users and Roles
+roles_users = db.Table(
+    'roles_users',
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id')),
+    db.Column('role_id', db.Integer, db.ForeignKey('role.id')))
 
 
 class Role(db.Model, RoleMixin):
@@ -59,7 +58,7 @@ class User(db.Model, UserMixin):
     confirmed_at = db.Column(db.DateTime())
     roles = relationship(
         'Role',
-        secondary='roles_users',
+        secondary=roles_users,
         backref=backref('users', lazy='dynamic'))
 
     def __repr__(self):

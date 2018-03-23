@@ -1,8 +1,12 @@
+#! /usr/bin/env python
+# -*- coding: utf-8 -*-
+
 ''' Flask Application Factory
 
     Blueprint Flask application using the factory pattern,
     with configuration setup and blueprint module registration
 '''
+
 from flask import Flask
 from flask_bootstrap import Bootstrap
 from flask_security import Security
@@ -10,6 +14,7 @@ from flask_security import SQLAlchemyUserDatastore
 from flask_security import utils
 from flask_mail import Mail
 from flask_debugtoolbar import DebugToolbarExtension
+
 from .models import db
 from .models import User
 from .models import Role
@@ -38,6 +43,7 @@ def create_app():
 
     # Initialize app
     app = Flask(__name__, instance_relative_config=True)
+    app.url_map.strict_slashes = False
 
     # Load default config values
     app.config.from_object('config.default')
