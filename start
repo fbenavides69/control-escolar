@@ -1,2 +1,3 @@
-export APP_CONFIG_FILE=/home/fbenavides/aws/miescuela/config/development.py
+#! /usr/bin/env bash
+export APP_CONFIG_FILE=./config/development.py
 python run.py

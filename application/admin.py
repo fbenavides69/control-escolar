@@ -5,16 +5,33 @@
     Define the administration views
 '''
 
-from flask_security import current_user
+from flask import abort
+from flask import request
+from flask import url_for
+from flask import redirect
 from flask_security import utils
+from flask_security import current_user
 from flask_admin import Admin
+from flask_admin import AdminIndexView
 from flask_admin.contrib.sqla import ModelView
 from wtforms.fields.simple import PasswordField
+
 from .models import db
 from .models import User
 from .models import Role
+from .models import RolesUsers
 
 
+# Customized Role model for SQL-Admin
+class RoleAdmin(ModelView):
+
+    # Prevent administration of Roles unless the currently logged-in user has
+    # the "admin" role
+    def is_accessible(self):
+        return current_user.has_role('admin')
+
+
+# Customized User model for SQL-Admin
 class UserAdmin(ModelView):
 
     # Don't display the password on the list of Users
@@ -63,16 +80,43 @@ class UserAdmin(ModelView):
             model.password = utils.encrypt_password(model.password2)
 
 
-# Customized Role model for SQL-Admin
-class RoleAdmin(ModelView):
+# Customized RolesUsers model for Flask-Admin
+class RolesUsersAdmin(ModelView):
 
-    # Prevent administration of Roles unless the currently logged-in user has
+    # Prevent administration Users Roles unless the current logged-in user has
     # the "admin" role
     def is_accessible(self):
         return current_user.has_role('admin')
 
 
-admin = Admin()
+# Customized Flask-admin Admin area
+class MyAdminIndexView(AdminIndexView):
+
+    def is_accessible(self):
+        if not current_user.is_active or not current_user.is_authenticated:
+            return False
+
+        if current_user.has_role('admin'):
+            return True
+
+        return False
+
+    def _handle_view(self, name, **kwargs):
+        """
+        Override builtin _handle_view in order to redirect users when a view
+        is not accessible.
+        """
+        if not self.is_accessible():
+            if current_user.is_authenticated:
+                # permission denied
+                abort(403)
+            else:
+                # login
+                return redirect(url_for('security.login', next=request.url))
+
+
+admin = Admin(index_view=MyAdminIndexView(name='Admin'))
 
 admin.add_view(UserAdmin(User, db.session))
 admin.add_view(RoleAdmin(Role, db.session))
+admin.add_view(RolesUsersAdmin(RolesUsers, db.session))

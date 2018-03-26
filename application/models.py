@@ -31,6 +31,18 @@ roles_users = db.Table(
     db.Column('role_id', db.Integer, db.ForeignKey('role.id')))
 
 
+class RolesUsers():
+    def __init__(self, user_id, role_id):
+        self.user_id = user_id
+        self.role_id = role_id
+
+    def __repr__(self):
+        return '<RolesUsers> {} {}'.format(self.role_id, self.user_id)
+
+
+db.mapper(RolesUsers, roles_users)
+
+
 class Role(db.Model, RoleMixin):
     __tablename__ = 'role'
 
@@ -39,7 +51,7 @@ class Role(db.Model, RoleMixin):
     description = db.Column(db.String(255))
 
     def __repr__(self):
-        return '<name> {}'.format(self.name)
+        return '<Role> {}'.format(self.name)
 
 
 class User(db.Model, UserMixin):
@@ -47,20 +59,27 @@ class User(db.Model, UserMixin):
 
     id = db.Column(db.Integer(), primary_key=True)
     email = db.Column(db.String(255), unique=True)
-    username = db.Column(db.String(255))
-    password = db.Column(db.String(255))
-    last_login_at = db.Column(db.DateTime())
-    current_login_at = db.Column(db.DateTime())
-    last_login_ip = db.Column(db.String(100))
-    current_login_ip = db.Column(db.String(100))
-    login_count = db.Column(db.Integer())
+    password = db.Column(db.String(255), nullable=False)
     active = db.Column(db.Boolean())
     confirmed_at = db.Column(db.DateTime())
+
+    last_login_at = db.Column(db.DateTime())
+    last_login_ip = db.Column(db.String(100))
+    current_login_at = db.Column(db.DateTime())
+    current_login_ip = db.Column(db.String(100))
+    login_count = db.Column(db.Integer())
+
+    #registered_on = db.Column(db.DateTime(), nullable=False)
+    #admin = db.Column(db.Boolean(), nullable=False, default=False)
+    username = db.Column(db.String(255), nullable=True)
+
+    #confirmed = db.Column(db.Boolean(), nullable=False, default=False)
+    #confirmed_on = db.Column(db.DateTime(), nullable=True)
     roles = relationship(
         'Role',
         secondary=roles_users,
         backref=backref('users', lazy='dynamic'))
 
     def __repr__(self):
-        return '<username> {} {}'.format(
+        return '<User> {} {}'.format(
             self.username, 'Active' if self.active else 'Non Active')
