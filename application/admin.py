@@ -17,9 +17,9 @@ from flask_admin.contrib.sqla import ModelView
 from wtforms.fields.simple import PasswordField
 
 from .models import db
-from .models import User
 from .models import Role
-from .models import RolesUsers
+from .models import User
+#from .models import RolesUsers
 
 
 # Customized Role model for SQL-Admin
@@ -81,7 +81,7 @@ class UserAdmin(ModelView):
 
 
 # Customized RolesUsers model for Flask-Admin
-class RolesUsersAdmin(ModelView):
+#class RolesUsersAdmin(ModelView):
 
     # Prevent administration Users Roles unless the current logged-in user has
     # the "admin" role
@@ -117,6 +117,6 @@ class MyAdminIndexView(AdminIndexView):
 
 admin = Admin(index_view=MyAdminIndexView(name='Admin'))
 
-admin.add_view(UserAdmin(User, db.session))
 admin.add_view(RoleAdmin(Role, db.session))
-admin.add_view(RolesUsersAdmin(RolesUsers, db.session))
+admin.add_view(UserAdmin(User, db.session))
+#admin.add_view(RolesUsersAdmin(RolesUsers, db.session))

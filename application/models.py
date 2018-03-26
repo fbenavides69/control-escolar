@@ -24,23 +24,12 @@ from sqlalchemy.orm import backref
 db = SQLAlchemy()
 
 
-# Create a table to support a many-to-many relationship between Users and Roles
 roles_users = db.Table(
     'roles_users',
-    db.Column('user_id', db.Integer, db.ForeignKey('user.id')),
-    db.Column('role_id', db.Integer, db.ForeignKey('role.id')))
-
-
-class RolesUsers():
-    def __init__(self, user_id, role_id):
-        self.user_id = user_id
-        self.role_id = role_id
-
-    def __repr__(self):
-        return '<RolesUsers> {} {}'.format(self.role_id, self.user_id)
-
-
-db.mapper(RolesUsers, roles_users)
+    db.Column(
+        'role_id', db.Integer, db.ForeignKey('role.id'), primary_key=True),
+    db.Column(
+        'user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True))
 
 
 class Role(db.Model, RoleMixin):
@@ -69,12 +58,8 @@ class User(db.Model, UserMixin):
     current_login_ip = db.Column(db.String(100))
     login_count = db.Column(db.Integer())
 
-    #registered_on = db.Column(db.DateTime(), nullable=False)
-    #admin = db.Column(db.Boolean(), nullable=False, default=False)
     username = db.Column(db.String(255), nullable=True)
 
-    #confirmed = db.Column(db.Boolean(), nullable=False, default=False)
-    #confirmed_on = db.Column(db.DateTime(), nullable=True)
     roles = relationship(
         'Role',
         secondary=roles_users,
@@ -83,3 +68,12 @@ class User(db.Model, UserMixin):
     def __repr__(self):
         return '<User> {} {}'.format(
             self.username, 'Active' if self.active else 'Non Active')
+
+
+class RolesUsers():
+
+    def __repr__(self):
+        return '<RolesUsers> {} {}'.format(self.role_id, self.user_id)
+
+
+db.mapper(RolesUsers, roles_users)
