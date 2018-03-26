@@ -1,11 +1,2 @@
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-#! /usr/bin/env bash
-export APP_CONFIG_FILE=/home/fbenavides/src/control-escolar/config/development.py
-=======
 export APP_CONFIG_FILE=/home/fbenavides/aws/miescuela/config/development.py
->>>>>>> Stashed changes
-=======
-export APP_CONFIG_FILE=/home/fbenavides/aws/miescuela/config/development.py
->>>>>>> Stashed changes
 python run.py
